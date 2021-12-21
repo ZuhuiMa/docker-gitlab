@@ -9,7 +9,7 @@ ENV GITLAB_VERSION=${VERSION} \
     GITLAB_SHELL_VERSION=13.21.1 \
     GITLAB_PAGES_VERSION=1.46.0 \
     GITALY_SERVER_VERSION=14.4.3 \
-    GITLAB_USER="git" \
+    GITLAB_USER="root" \
     GITLAB_HOME="/home/git" \
     GITLAB_LOG_DIR="/var/log/gitlab" \
     GITLAB_CACHE_DIR="/etc/docker-gitlab" \
@@ -27,6 +27,8 @@ RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     wget ca-certificates apt-transport-https gnupg2 \
  && apt-get upgrade -y \
+ && chmod 755 /home/git/data \
+ && chown 1000:1000 /home/git/data \
  && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex && \
