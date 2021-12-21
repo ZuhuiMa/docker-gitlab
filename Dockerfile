@@ -27,8 +27,6 @@ RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     wget ca-certificates apt-transport-https gnupg2 \
  && apt-get upgrade -y \
- && chmod 755 /home/git/data \
- && chown 1000:1000 /home/git/data \
  && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex && \
